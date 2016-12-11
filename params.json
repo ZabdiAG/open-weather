@@ -1,0 +1,6 @@
+{
+  "name": "Open-weather",
+  "tagline": "Ruby gem that consults weather api",
+  "body": "[![Build Status](https://travis-ci.org/ZabdiAG/open-weather.svg?branch=master)](https://travis-ci.org/ZabdiAG/open-weather)\r\n# open-weather\r\nRuby gem that consults http://openweathermap.org/ api \r\n\r\n\r\n\r\n### Sample\r\n\r\nCreate new Weather object, its parameters are, a valid key, from http://openweathermap.org/, and an optional parameter that indicates units of measures, like FAHRENHEIT, CELSIUS, or KELVIN, its default if is not assigned one, is KELVIN\r\n~~~~\r\nweather = OpenWeather::Weather.new('YOUR_KEY')\r\n# OPTIONAL PARAMETER(units)\r\nweather = OpenWeather::Weather.new('YOUR_KEY',  OpenWeather::Units::CELSIUS)\r\n~~~~\r\n\r\n\r\nYou can search by coord, or by city name, both methods have units optional parameter:\r\n~~~~\r\nweather.by_coord(25.6866, -100.32)\r\nweather.by_coord(25.6866, -100.32, OpenWeather::Units::FAHRENHEIT)\r\n#or\r\nweather.by_city_name('Monterrey')\r\nweather.by_city_name('Monterrey', OpenWeather::Units::KELVIN)\r\n~~~~\r\n\r\nThe response is a hash, for example:\r\n~~~~\r\n{:city=>\"Monterrey\", :weather=>\"light intensity drizzle\", :temp=>284.77} \r\n~~~~\r\n",
+  "note": "Don't delete this file! It's used internally to help with page regeneration."
+}
