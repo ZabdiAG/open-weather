@@ -1,6 +1,6 @@
 require 'net/http'
 require 'json'
-require 'open-weather/Units'
+require 'open-weather/units'
 
 module OpenWeather
   class Weather
