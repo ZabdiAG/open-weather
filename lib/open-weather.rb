@@ -21,28 +21,28 @@ module OpenWeather
 
     def by_coord(lat, lon, units = @units)
       units = Units::KELVIN unless ACCEPTABLE_UNITS.include?(units)
-      params = {:APPID => @key, :lat=> lat, :lon=>lon, :units => units}
+      params = {APPID: @key, lat: lat, lon: lon, units: units}
       get_response params
     end
 
     def by_city_name(name = '', units = @units)
       units = Units::KELVIN unless ACCEPTABLE_UNITS.include?(units)
-      params = {:APPID => @key, :q => name, :units => units}
+      params = {APPID: @key, q: name, units: units}
       get_response params
     end
 
     private
 
-    def get_response params
+    def get_response(params)
       uri    = URI(BASE_URL)
       uri.query = URI.encode_www_form(params)
       res = Net::HTTP.get_response(uri)
       response_body = JSON.parse(res.body)
       if res.is_a?(Net::HTTPSuccess)
         result ={
-          :city    => response_body['name'],
-          :weather => response_body['weather'][0]['description'],
-          :temp    => response_body['main']['temp']
+          city:     response_body['name'],
+          weather:  response_body['weather'][0]['description'],
+          temp:     response_body['main']['temp']
         }
       elsif res.is_a?(Net::HTTPBadGateway)
         response_body['message']
