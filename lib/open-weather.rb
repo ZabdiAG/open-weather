@@ -1,17 +1,20 @@
-#TODO: required gems to gemspec [net/http,json,]
-
 require 'net/http'
 require 'json'
-require 'weather_API/units'
+require 'open-weather/Units'
 
-module WeatherAPI
+module OpenWeather
   class Weather
     BASE_URL =  "http://api.openweathermap.org/data/2.5/weather"
-    ACCEPTABLE_UNITS = [Units::FAHRENHEIT, Units::CELSIUS, Units::KELVIN]
+    ACCEPTABLE_UNITS =
+    [
+      Units::FAHRENHEIT,
+      Units::CELSIUS,
+      Units::KELVIN
+    ]
 
-    attr_accessor :units
+    attr_accessor :units, :key
 
-    def initialize(api_key, units = Weather::Units::KELVIN)
+    def initialize(api_key, units = Units::KELVIN)
       @key          = api_key
       @units        = units
     end
@@ -19,13 +22,13 @@ module WeatherAPI
     def by_coord(lat, lon, units = @units)
       units = Units::KELVIN unless ACCEPTABLE_UNITS.include?(units)
       params = {:APPID => @key, :lat=> lat, :lon=>lon, :units => units}
-      self.get_response params
+      get_response params
     end
 
     def by_city_name(name = '', units = @units)
       units = Units::KELVIN unless ACCEPTABLE_UNITS.include?(units)
       params = {:APPID => @key, :q => name, :units => units}
-      self.get_response params
+      get_response params
     end
 
     private
