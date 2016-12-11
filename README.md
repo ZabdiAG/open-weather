@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/ZabdiAG/open-weather.svg?branch=master)](https://travis-ci.org/ZabdiAG/open-weather)
 # open-weather
 Ruby gem that consults http://openweathermap.org/ api 
 
