@@ -1,10 +1,7 @@
 language: ruby
 rvm:
-- 2.1.5
-- 2.2.4
-bundler_args: --jobs=2
-script:
-script:
-  - bundle exec rake db:setup
-  - bundle exec rake spec
-cache: bundler
+  - 2.1.5
+  - jruby
+  - rbx-2
+
+script: bundle exec rspec spec
